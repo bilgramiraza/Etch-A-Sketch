@@ -8,7 +8,57 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    
+    <h1>Etch-A-Sketch</h1>
+    <div class="main">
+        <div class="toolbar">
+            
+            <label>
+                <input type="color" id="penColor"> </input>
+                Pen Color
+            </label>
+            <br>
+            
+            <label>
+                <input type="color" id="backgroundColor"> </input>
+                Background Color    
+            </label>
+            <br>
+
+            <label>
+                <input type="checkbox"> </input>
+                Eraser
+            </label>
+            <br>
+
+            <label>
+                <input type="checkbox"> </input>
+                Rainbow    
+            </label>
+            <br>
+
+            <label>
+                Lighten
+                <input type="checkbox"> </input>
+                Shading   
+            </label>
+            <br>
+            
+            <label>
+                Grid Size: 
+                <input type="number" size="2" min="1" max="64" id="rows"> </input>
+                x
+                <input type="number" size="2" min="1" max="64" id="columns"> </input>
+            </label>
+            <br>  
+            <label>
+                <button type="reset">Reset</button>
+            </label>
+            
+        </div>
+        <div class="board">
+
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>
