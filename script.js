@@ -1,15 +1,16 @@
 const grid = document.querySelector('.board');
 const primary=document.querySelector('#primary');
 const secondary=document.querySelector('#secondary');
-const reset=document.querySelector('label>button');
 const dimensions=document.querySelector('#dimensions');
+const reset=document.querySelector('#reset');
 let primaryPen=false;
 let secondaryPen=false;
 let box= [];
-
-window.onload=createGrid();
-
+createGrid();
 dimensions.addEventListener('input',createGrid);
+
+reset.addEventListener('click',()=>{
+    location.reload();});
 
 box.forEach((cell)=>{
     cell.addEventListener('click',(event)=>{
