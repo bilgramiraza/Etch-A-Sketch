@@ -23,17 +23,10 @@ h1{
 .board{
     display: grid;
     width: 85%;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
-
     border: 2px solid black;
 }
 
 .box{
     background-color: white;
-    border: 1px dotted black;
-}
-
-.painted{
-    background-color: black;
+    outline: 1px dotted black;
 }
