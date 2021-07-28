@@ -9,17 +9,8 @@ let box= [];
 
 window.onload=createGrid();
 
-function createGrid(){
-    grid.style.gridTemplateColumns=`repeat(${dimensions.value}, 1fr)`;
-    grid.style.gridTemplateRows=`repeat(${dimensions.value}, 1fr)`;
-    console.log(primary.value);
-    for(let i=0;i<(parseInt(dimensions.value)**2);i++){
-        box[i]=document.createElement('div');
-        box[i].classList.add('box');
-        grid.appendChild(box[i]);
-    };
+dimensions.addEventListener('input',createGrid);
 
-}
 box.forEach((cell)=>{
     cell.addEventListener('click',(event)=>{
         penToggle(event.which);
@@ -51,4 +42,15 @@ function penToggle(press){
                     primaryPen=false;
                 break;
     }
+}
+
+function createGrid(){
+    grid.style.gridTemplateColumns=`repeat(${dimensions.value}, 1fr)`;
+    grid.style.gridTemplateRows=`repeat(${dimensions.value}, 1fr)`;
+    for(let i=0;i<(parseInt(dimensions.value)**2);i++){
+        box[i]=document.createElement('div');
+        box[i].classList.add('box');
+        grid.appendChild(box[i]);
+    };
+
 }
