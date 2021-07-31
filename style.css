@@ -26,7 +26,8 @@ h1{
     border: 2px solid black;
 }
 
-.box{
-    background-color: #ffffff;
-    outline: 1px dotted black;
+.outline{
+    outline-width: 1px;
+    outline-style: dotted;
+    outline-color: black;
 }
