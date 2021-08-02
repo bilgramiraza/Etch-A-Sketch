@@ -8,56 +8,72 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <h1>Etch-A-Sketch</h1>
     <div class="main">
+        <h1>Etch-A-Sketch</h1>
         <div class="toolbar">
-            
-            <label>
-                <input type="color" id="primary" value="#000000"> </input>
-                Primary Color
-            </label>
-            <br>
-            
-            <label>
-                <input type="color" id="secondary" value="#ffffff"> </input>
-                Secondary Color    
-            </label>
-            
-            <br>
-
-            <label>
-                <input type="radio" value="normal" name="pen" checked>Normal</input>
-            </label>
-            <label>
-                <input type="radio" value="eraser" name="pen">Eraser</input>
-            </label>
-            <label>
-                <input type="radio" value="rainbow" name="pen">Rainbow</input>
-            </label>
-            <label>
-                <input type="radio" value="lighten" name="pen">Lighten</input>
-            </label>
-            <label>
-                <input type="radio" value="darken" name="pen">Shading</input>
-            </label>
-
-            <br>
-            
             <label>
                 Grid Size: 
                 <input type="number" size="2" min="1" max="64" value="16" id="dimensions"> </input>
                 <sup>2</sup>
             </label>
+
             <br>  
+            <div class="mode">
+                MODE 
+                <div class="display"> NORMAL</div>
+            </div>
+            <br>
+
+            <div class="colorPanel">
+                <div>
+                    <label>
+                        <input type="color" id="primary" value="#000000"> </input>
+                        <br>
+                        Primary 
+                    </label>
+                </div>
+
+                <br>
+                <div>
+                    <label>
+                        <input type="color" id="secondary" value="#ffffff"> </input>
+                        <br>
+                        Secondary     
+                    </label>
+                </div>
+
+            </div>
+            <br>
+
+            <div class="pen">
+                <label>
+                    <input type="radio" value="normal" name="pen" checked>Normal</input>
+                </label>
+                <label>
+                    <input type="radio" value="eraser" name="pen">Eraser</input>
+                </label>
+                <label>
+                    <input type="radio" value="rainbow" name="pen">Rainbow</input>
+                </label>
+                <label>
+                    <input type="radio" value="lighten" name="pen">Lighten</input>
+                </label>
+                <label>
+                    <input type="radio" value="darken" name="pen">Shading</input>
+                </label>
+            </div>
+            <br>
+
+            <label>
+                <input type="checkbox" name="gridLines">Guide Lines</input>
+            </label>            
+            <br>
             <label>
                 <button type="reset" id="reset">Reset</button>
             </label>
-            <br>
-            <label>
-                <input type="checkbox" name="gridLines">Guide Lines</input>
-            </label>
         </div>
-
+    </div>
+    <div class="grid">
         <div class="board">
         </div>
     </div>
