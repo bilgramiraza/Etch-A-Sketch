@@ -173,6 +173,12 @@ function penEffect(effect){
         isLighten=false;
         isDarken=false;
     }
+    if(effect==="normal")               //Hides or shows the Color selection 
+        toggleColorPanel(true);         //if normal mode is selected
+    else
+        toggleColorPanel(false);
+    const display=document.querySelector(".display");
+    display.textContent=effect.toUpperCase();
 }
 
 //Function to Increase or decrease the brightness of a color 
@@ -200,4 +206,15 @@ function LightenDarkenColor(rgb,mod){
         hex[index]=(hex[index].length===1)?"0"+hex[index]:hex[index];
     });
     return '#'+hex.join('');
+}
+
+//Function to hide or show the 'Color Selection Panel' 
+//does so by simply adding or removing the 'hide' class 
+//which sets "display:none" 
+function toggleColorPanel(flag){
+    const colorPanel=document.querySelector(".colorPanel");
+    if(flag)
+        colorPanel.classList.remove("hide");
+    else
+        colorPanel.classList.add("hide");
 }

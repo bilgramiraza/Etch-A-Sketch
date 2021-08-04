@@ -9,18 +9,20 @@
 </head>
 <body>
     <div class="main">
-        <h1>Etch-A-Sketch</h1>
+
+        <h1 class="heading">Sketch <br> Book</h1>
         <div class="toolbar">
             <label>
-                Grid Size: 
-                <input type="number" size="2" min="1" max="64" value="16" id="dimensions"> </input>
+                WIDTH: 
+                    <input type="number" size="2" min="1" max="64" value="16" id="dimensions">
+                    </input>
                 <sup>2</sup>
             </label>
 
             <br>  
             <div class="mode">
                 MODE 
-                <div class="display"> NORMAL</div>
+                <span class="display"> NORMAL</span>
             </div>
             <br>
 
@@ -46,22 +48,38 @@
             <br>
 
             <div class="pen">
-                <label>
-                    <input type="radio" value="normal" name="pen" checked>Normal</input>
+                <input type="radio" value="normal" name="pen" id="normal" checked>
+                <span class="checkbox" id="Nbulb"></span>
+                <label for="normal">
+                    Normal
                 </label>
-                <label>
-                    <input type="radio" value="eraser" name="pen">Eraser</input>
+
+                <input type="radio" value="eraser" name="pen" id="eraser">
+                <span class="checkbox" id="Ebulb"></span>
+                <label for="eraser">
+                    Eraser
                 </label>
-                <label>
-                    <input type="radio" value="rainbow" name="pen">Rainbow</input>
+
+                <input type="radio" value="rainbow" name="pen" id="rainbow">
+                <span class="checkbox" id="Rbulb"></span>
+                <label for="rainbow">
+                    Rainbow
                 </label>
-                <label>
-                    <input type="radio" value="lighten" name="pen">Lighten</input>
+
+                <input type="radio" value="lighten" name="pen"id="lighten">
+                <span class="checkbox" id="Lbulb"></span>
+                <label for="lighten">
+                    Lighten
                 </label>
-                <label>
-                    <input type="radio" value="darken" name="pen">Shading</input>
+
+                <input type="radio" value="darken" name="pen" id="shading">
+                <span class="checkbox" id="Sbulb"></span>
+                <label for="shading">
+                    Shading
                 </label>
+
             </div>
+
             <br>
 
             <label>
