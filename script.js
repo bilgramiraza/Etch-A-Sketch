@@ -24,6 +24,15 @@ let isDarken=false;
 window.onload = createGrid(parseInt(dimensions.value));
 //STARTUP FUNCTION
 
+//Heading flickering animation Function. Using Js to randomize
+//the flickering rate of the heading glow animation
+setInterval(() => {
+    let animationTimer=document.querySelector(".heading");
+    let Time=(Math.round(Math.random()*6)+1);
+    animationTimer.style.setProperty('--animation-time',(Time).toString()+'s');
+}, 10000);      //Once every 10 Seconds
+
+
 //TOOLBAR EVENT HANDLERS
 //Recreate the grid if the griz size has been changed
 dimensions.addEventListener('input',()=>{
@@ -103,7 +112,7 @@ function initCell(){
 function cellInteractions(cell){
     const primary=document.querySelector('#primary');
     const secondary=document.querySelector('#secondary');
-
+    const RainbowBtn=document.querySelector('label[for="rainbow"]');
     //This checks if M1 has been clicked
     cell.addEventListener('click',(event)=>{
         penToggle(event.which);             //enables M1 and disables M2
@@ -122,18 +131,26 @@ function cellInteractions(cell){
     // Changes the color of the grid depending on whether M1 or M2 has been toggled
     //Color change is either the Primary/Secondary color depending on the Mode.
     cell.addEventListener('mouseover',(event)=>{
-        if(isRainbow)       //Code to Change the primary color to a random color. (16777215) is the max permutations of a 6 digit 15(hex) combo
+        if(isRainbow){       //Code to Change the primary color to a random color. (16777215) is the max permutations of a 6 digit 15(hex) combo
             primary.value='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); //https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj 
-                            //Has padding in case number is 4/5 digits(edge case)
+            RainbowBtn.style.setProperty("background-color",primary.value);
+            }                //Has padding in case number is 4/5 digits(edge case)
         else if(isLighten)  //Changes the primary color by increasing saturation by 10%
             primary.value=LightenDarkenColor(event.target.style.backgroundColor,LIGHTEN10);
         else if(isDarken)   //Changes the primary color by decreasing saturation by 10%
             primary.value=LightenDarkenColor(event.target.style.backgroundColor,DARKEN10);
 
-        if(isPrimaryPen)    //applies the primary color if M1 flag is set to True
+        if(isPrimaryPen){    //applies the primary color if M1 flag is set to True
             event.target.style.backgroundColor=primary.value;
-        else if(isSecondaryPen)     //applies the secondary color if M1 flag is set to True
+            event.target.style.cursor="grabbing";
+        }
+        else if(isSecondaryPen){     //applies the secondary color if M1 flag is set to True
             event.target.style.backgroundColor=secondary.value;
+            event.target.style.cursor="grabbing";
+        }
+        else
+            event.target.style.cursor="grab";
+
     });
 }
 
@@ -149,22 +166,34 @@ function destroyGrid(){
 function penEffect(effect){
     const primary=document.querySelector('#primary');
     const secondary=document.querySelector('#secondary');
+    const display=document.querySelector(".display");
+    const RainbowBtn=document.querySelector('label[for="rainbow"]');
+
     switch(effect){
         case "normal":primary.value=BLACK;  //basic Default Mode
+            display.textContent="Normal"; 
+            RainbowBtn.style.setProperty("background-color","#0d0949");//Resetting 'Rainbow' label to original Color  
             break;
         case "eraser":primary.value=WHITE;  //Sets primary color to white
+            display.textContent="Eraser"; 
+            RainbowBtn.style.setProperty("background-color","#0d0949");//Resetting 'Rainbow' label to original Color  
             break;
         case "rainbow":isRainbow=true;      //Sets the mode to Random color mode 
             isLighten=false;                //Also sets the other modes to False
             isDarken=false;                 //Since it cannot be in multiple modes
+            display.textContent="Rainbow"; 
             break;                          //At once
         case "lighten":isLighten=true;
             isRainbow=false;
             isDarken=false;
+            display.textContent="Lighten"; 
+            RainbowBtn.style.setProperty("background-color","#0d0949");//Resetting 'Rainbow' label to original Color  
             break;
         case "darken":isDarken=true;
             isLighten=false;
             isRainbow=false;
+            display.textContent="Shading"; 
+            RainbowBtn.style.setProperty("background-color","#0d0949");//Resetting 'Rainbow' label to original Color  
             break;
     }
     secondary.value=WHITE;              //Sets the Secondary color to white 
@@ -177,8 +206,6 @@ function penEffect(effect){
         toggleColorPanel(true);         //if normal mode is selected
     else
         toggleColorPanel(false);
-    const display=document.querySelector(".display");
-    display.textContent=effect.toUpperCase();
 }
 
 //Function to Increase or decrease the brightness of a color 

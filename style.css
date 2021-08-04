@@ -4,6 +4,7 @@
     --clr-text:#B7C1DE;
     --clr-white:#ffffff;
     --clr-fieldbg:#0d0949;
+    --animation-time:1s;
     box-sizing: border-box;
 }
 
@@ -29,12 +30,21 @@ h1{
     border: 0.125em solid var(--clr-lights);
     padding: 0.25em 1 em;
     border-radius: 0.25em;
-
-    text-shadow:0 0 0.125em hsl(225 37% 79%/0.3), 
-                0 0 0.5em var(--clr-lights);
-    box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
-                0 0 0.5em 0 var(--clr-lights);
+    animation-name: blinkingNeon;
+    animation-duration: var(--animation-time);
+    animation-iteration-count: infinite;
+    animation-timing-function:cubic-bezier(1, 0, 0, 1) ;
 }
+
+@keyframes blinkingNeon {
+    50%{
+        text-shadow:0 0 0.125em hsl(225 37% 79%), 
+        0 0 0.5em var(--clr-lights);
+        box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
+        0 0 0.5em 0 var(--clr-lights);
+    }
+}
+
 
 
 .toolbar{
@@ -66,12 +76,23 @@ h1{
     padding:1%;
     flex-grow: 1;
 }
+
+#dimensions,textarea{
+    background-color: var(--clr-fieldbg);
+    color: var(--clr-text);
+    border: 0.25em inset var(--clr-lights);
+}
+
 .mode>.display{
-    display: inline;
+    display: inline-block;    
+    padding: 0.125em;
+    max-width: 7em;
+    min-width: 7em;
     background-color: var(--clr-fieldbg);
     color: var(--clr-text);
     outline: var(--clr-lights) outset 0.125em;
-    padding: 0.125em;
+    cursor:default;
+    text-align: center;
 }
 .colorPanel{
     display: flex;
@@ -79,10 +100,34 @@ h1{
     justify-content: space-evenly;
     padding: 0.5em;
     border-block: 0.25em ridge var(--clr-text);
+    transform-origin: top;
+    animation: penExpand 1s ease forwards;
+}
+@keyframes penExpand {
+    0%{
+        visibility: collapse;
+        transform: scaleY(0%);
+    }
+    100%{
+        transform: scaleY(100%);
+        visibility: visible;
+    }    
 }
 
-.hide{
-    display: none;
+.colorPanel.hide{
+    cursor:not-allowed;
+    transform-origin: top;
+    animation: penCollapse 1s ease forwards;
+}
+@keyframes penCollapse {
+    0%{
+        visibility: visible;
+        transform: scaleY(100%);
+    }
+    100%{
+        transform: scaleY(0%);
+        visibility: collapse;
+    }    
 }
 
 
@@ -147,15 +192,83 @@ h1{
     background-color: var(--clr-fieldbg);
 }
 
-input:checked+.checkbox+label,.pen>label:hover{
-    text-shadow:0 0 0.125em hsl(225 37% 79%/0.3), 
+input:checked+.checkbox+label{
+    text-shadow:0 0 0.125em hsl(225 37% 79%), 
                 0 0 0.5em var(--clr-lights);
     box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
                 0 0 0.5em 0.125em var(--clr-lights);
     cursor: pointer;
 }
+.pen>label:hover{
+    animation: neonHover 500ms ease forwards;
+    cursor: pointer;
+}
+@keyframes neonHover {
+    100%{
+        text-shadow:0 0 0.125em hsl(225 37% 79%), 
+                    0 0 0.5em var(--clr-lights);
+        box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
+                    0 0 0.5em 0.125em var(--clr-lights);
+    }
+}
 
 input:checked+.checkbox{
     box-shadow:-0.125em 0.125em 1em 0.125em var(--clr-lights),
                 inset 0 0.125em 0.5em 0.75em var(--clr-lights);
+}
+
+
+
+input[type="checkbox"]{
+    display: none;
+}
+label[for="gridLines"]{
+    outline:0.125em solid var(--clr-lights) ;
+    background-color: var(--clr-fieldbg);
+    cursor: pointer;
+    text-align: center;
+    margin: 0.5em;
+}
+input[type="checkbox"]:checked+label[for="gridLines"]{
+    text-shadow:0 0 0.125em hsl(225 37% 79%), 
+                0 0 0.5em var(--clr-lights);
+    box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
+                0 0 0.5em 0.125em var(--clr-lights);
+}
+label[for="gridLines"]:hover{
+    animation: neonHover 500ms ease forwards;
+}
+button{
+    display: none;
+}
+
+label[for="reset"]{
+    outline:0.125em solid var(--clr-lights) ;
+    background-color: var(--clr-fieldbg);
+    width: 90%;
+    cursor: pointer;
+    text-align: center;
+    margin: 0.5em;
+}
+
+
+label[for="reset"]:active{
+    background-color: red;
+    text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.788), 
+                0 0 0.5em red;
+    box-shadow: inset 0 0 0.75em 0 red, 
+                0 0 0.5em 0.25em red;    
+}
+label[for="reset"]:hover{
+    animation: resetHover 500ms ease forwards;
+}
+
+@keyframes resetHover {
+    100%{
+        background-color: red;
+        text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.788), 
+        0 0 0.5em red;
+        box-shadow: inset 0 0 0.75em 0 red, 
+        0 0 0.5em 0.25em red;  
+    }
 }
