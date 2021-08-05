@@ -5,31 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Etch-A-Sketch</title>
+    <script src="script.js" defer></script>
+    <title>Sketh Book</title>
 </head>
 <body>
+<!-- Start of Main column Div -->
     <div class="main">
 
         <h1 class="heading">Sketch <br> Book</h1>
+        <!-- Start of Toolbar Panel-->
         <div class="toolbar">
+            <!-- Start of Width Selection -->
             <label>
                 WIDTH: 
                     <input type="number" size="2" min="1" max="64" value="16" id="dimensions">
-                    </input>
                 <sup>2</sup>
             </label>
+            <!-- End of Width Selection -->
 
             <br>  
+            <!-- Start of Mode Display -->
             <div class="mode">
                 MODE 
                 <span class="display"> NORMAL</span>
             </div>
+            <!-- End of Mode Display -->
             <br>
 
+            <!-- Start of Color Selection Panel(For Normal Mode) -->
             <div class="colorPanel">
                 <div>
                     <label>
-                        <input type="color" id="primary" value="#000000"> </input>
+                        <input type="color" id="primary" value="#000000"> 
                         <br>
                         Primary 
                     </label>
@@ -38,15 +45,17 @@
                 <br>
                 <div>
                     <label>
-                        <input type="color" id="secondary" value="#ffffff"> </input>
+                        <input type="color" id="secondary" value="#ffffff">
                         <br>
                         Secondary     
                     </label>
                 </div>
 
             </div>
+            <!-- End of Color Selection Panel(For Normal Mode) -->
             <br>
 
+            <!-- Start of Pen Mode Selection Grid -->
             <div class="pen">
                 <input type="radio" value="normal" name="pen" id="normal" checked>
                 <span class="checkbox" id="Nbulb"></span>
@@ -77,24 +86,30 @@
                 <label for="shading">
                     Shading
                 </label>
-
             </div>
-
+            <!-- End of Pen Mode Selection Grid -->
             <br>
 
-            <input type="checkbox" name="gridLines" id="gridLines"></input>
+            <!-- Start of Grid Line Toggle Button -->
+            <input type="checkbox" name="gridLines" id="gridLines">
             <label for="gridLines">Guide Lines</label>            
+            <!-- End of Grid Line Toggle Button -->
             <br>
 
+            <!-- Start of Reset Button -->
             <button type="reset" id="reset"></button>
             <label for="reset">Reset</label>
-
+            <!-- End of Reset Button -->
         </div>
+        <!-- End of Toolbar Panel-->
     </div>
+<!-- End of Main column Div -->
+
+<!-- Start of Grid column Div -->
     <div class="grid">
         <div class="board">
         </div>
     </div>
+<!-- End of Grid column Div -->
 </body>
-<script src="script.js"></script>
 </html>

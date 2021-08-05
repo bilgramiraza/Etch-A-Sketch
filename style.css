@@ -1,14 +1,13 @@
 :root{
-    --clr--bg:#092047;
-    --clr-lights:#AC61B9;
-    --clr-text:#B7C1DE;
-    --clr-white:#ffffff;
-    --clr-fieldbg:#0d0949;
-    --animation-time:1s;
-    box-sizing: border-box;
-    font-size: 1.5em;
+    --clr--bg:#092047;      /*Theme Background Color*/
+    --clr-lights:#AC61B9;   /*Theme Glow color for neon theme*/
+    --clr-text:#B7C1DE;     /*Theme Text color*/
+    --clr-white:#ffffff;    
+    --clr-fieldbg:#0d0949;  /*Theme Background color for Fields|buttons*/
+    --animation-time:1s;      /*Animation time variable to randomize the flicker rate of title using JS*/
+    box-sizing: border-box;   
+    font-size: 1.5em;         
 }
-
 body{
     background-color: var(--clr--bg);
     color:var(--clr-text);
@@ -16,15 +15,21 @@ body{
     flex-direction: row;
     height:98vh;
 }
-h1{
-    text-align: center;
-}
+
+
+/*Heading|ToolBar Panel*/
 .main{
     display: flex;
     flex-direction: column;
     width: 15%;
     max-height:90vh;
     flex-grow: 1;
+}
+/*Heading|ToolBar Panel*/
+
+/* Heading CSS Settings */
+h1{
+    text-align: center;
 }
 .heading{
     color:var(--clr-text);
@@ -38,18 +43,18 @@ h1{
     animation-iteration-count: infinite;
     animation-timing-function:cubic-bezier(1, 0, 0, 1) ;
 }
-
-@keyframes blinkingNeon {
+@keyframes blinkingNeon {                   /*Heading Flickering Glow Animation*/
     50%{
-        text-shadow:0 0 0.125em hsl(225 37% 79%), 
+        text-shadow:0 0 0.125em var(--clr-text), 
         0 0 0.5em var(--clr-lights);
         box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
         0 0 0.5em 0 var(--clr-lights);
     }
 }
+/* Heading CSS Settings */
 
 
-
+/* General Toolbar Panel CSS Settings */
 .toolbar{
     display: flex;
     flex-direction: column;
@@ -59,28 +64,10 @@ h1{
     height:95%;
     border-top: 0.25em ridge var(--clr-text);
     padding-block: 0.5em;
-    /* border: 2px solid white; */
 }
-.board{
-    display: grid;
-    width: 100%;
-    border: 0.125em solid var(--clr-lights);
-    box-shadow: 0 0 0.25em 0.25em var(--clr-lights);
-}
+/* General Toolbar Panel CSS Settings */
 
-.outline{
-    outline-width: 1px;
-    outline-style: dotted;
-    outline-color: black;
-}
-.grid{
-    display: inherit;
-    width: 80%;
-    height: 94vh;
-    padding:1%;
-    flex-grow: 1;
-}
-
+/*'Width' Input CSS Settings */
 #dimensions,textarea{
     background-color: var(--clr-fieldbg);
     color: var(--clr-text);
@@ -89,7 +76,9 @@ h1{
     border: 0.125em solid var(--clr-lights);
     outline:0.125em solid var(--clr-lights) ;
 }
+/*'Width' Input CSS Settings */
 
+/*Pen Input Mode Display CSS Settings */
 .mode>.display{
     display: inline-block;    
     padding: 0.125em;
@@ -101,7 +90,10 @@ h1{
     cursor:default;
     text-align: center;
 }
-.colorPanel{
+/*Pen Input Mode Display CSS Settings */
+
+/*Color Selection Panel(for Normal Mode) CSS Settings */
+.colorPanel{                                    /*Base Panel Setting*/
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -110,8 +102,7 @@ h1{
     transform-origin: top;
     animation: penExpand 1s ease forwards;
 }
-
-@keyframes penExpand {
+@keyframes penExpand {                          /*Animation for whem Panel is visible*/
     0%{
         visibility: collapse;
         transform: scaleY(0%);
@@ -121,13 +112,12 @@ h1{
         visibility: visible;
     }    
 }
-
-.colorPanel.hide{
+.colorPanel.hide{                               /*CSS settings for Hiding Color Panel*/
     cursor:not-allowed;
     transform-origin: top;
     animation: penCollapse 1s ease forwards;
 }
-@keyframes penCollapse {
+@keyframes penCollapse {                        /*Animation for Hiding Color Panel*/
     0%{
         visibility: visible;
         transform: scaleY(100%);
@@ -137,11 +127,9 @@ h1{
         visibility: collapse;
     }    
 }
+/*Color Selection Panel(for Normal Mode) CSS Settings */
 
-
-[type="radio"]{
-    display: none;
-}
+/*Mode Selection Panel CSS Settings */
 .pen{
     display: grid;
     grid-template-columns:1em 1fr 1em 1fr;
@@ -155,39 +143,40 @@ h1{
     "Rbulb rainbow rainbow rainbow"
     "Lbulb lighten Sbulb shading";
 }
-
-#Nbulb{
-    grid-area: Nbulb;
+#Nbulb{                                     /*Assigning Grid-Area Names to each element*/
+    grid-area: Nbulb;                       /*                                         */
+}                                           /*      ||===========================//    */
+#Ebulb{                                     /*      ||                          //     */
+    grid-area: Ebulb;                       /*      ||                         //      */
+}                                           /*      ||                        //       */
+#Rbulb{                                     /*      ||                       //        */
+    grid-area: Rbulb;                       /*      ||                      //         */
+}                                           /*      ||                     //          */
+#Lbulb{                                     /*      ||                    //           */
+    grid-area: Lbulb;                       /*      ||                   //            */
+}                                           /*      ||                  //             */
+#Sbulb{                                     /*      || ================//              */
+    grid-area: Sbulb;                       /*      ||  \\                             */
+}                                           /*      ||   \\                            */
+[for="normal"]{                             /*      ||    \\                           */
+    grid-area: normal;                      /*      ||     \\                          */
+}                                           /*      ||      \\                         */
+[for="eraser"]{                             /*      ||       \\                        */
+    grid-area: eraser;                      /*      ||        \\                       */
+}                                           /*      ||         \\                      */
+[for="rainbow"]{                            /*      ||          \\                     */
+    grid-area: rainbow;                     /*      ||           \\                    */
+}                                           /*      ||            \\                   */
+[for="lighten"]{                            /*      ||             \\                  */
+    grid-area: lighten;                     /*      ||              \\                 */
+}                                           /*      ||               \\                */
+[for="shading"]{                            /*      ||                \\               */
+    grid-area: shading;                     /*                                         */
+}                                           /*Assigning Grid-Area Names to each element*/
+[type="radio"]{                             /*Hiding the default radio button*/
+    display: none;
 }
-#Ebulb{
-    grid-area: Ebulb;
-}
-#Rbulb{
-    grid-area: Rbulb;
-}
-#Lbulb{
-    grid-area: Lbulb;
-}
-#Sbulb{
-    grid-area: Sbulb;
-}
-[for="normal"]{
-    grid-area: normal;
-}
-[for="eraser"]{
-    grid-area: eraser;
-}
-[for="rainbow"]{
-    grid-area: rainbow;
-}
-[for="lighten"]{
-    grid-area: lighten;
-}
-[for="shading"]{
-    grid-area: shading;
-}
-
-.checkbox{
+.checkbox{                                  /*Custom Radio 'bulb'*/
     display: inline-block;
     height: 1em;
     width: 1em;
@@ -195,62 +184,62 @@ h1{
     border-radius: 50%;
     box-shadow: 0 0 0.125em 0.01em var(--clr-lights);
 }
-.pen>label{
+.pen>label{                                 /*Pen Radio label CSS setting*/
     outline:0.125em solid var(--clr-lights) ;
     background-color: var(--clr-fieldbg);
 }
-
-input:checked+.checkbox+label{
-    text-shadow:0 0 0.125em hsl(225 37% 79%), 
-                0 0 0.5em var(--clr-lights);
-    box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
-                0 0 0.5em 0.125em var(--clr-lights);
+input:checked+.checkbox+label{              /*Pen Radio Label glow When Selected(Checked)*/ 
+    text-shadow:0 0 0.125em var(--clr-text),              /* IF Input=Checked Selects the adjecent sibling(Label) of the Adjacent sibling(span checkbox)*/
+                0 0 0.5em var(--clr-lights);              /*AKA Input > .Checkbox > Label |  Did this because you can't select previous sibling elements*/
+    box-shadow: inset 0 0 0.75em 0 var(--clr-lights),     /*       |                 ^   */
+                0 0 0.5em 0.125em var(--clr-lights);      /*       L-----------------J   */
     cursor: pointer;
 }
-.pen>label:hover{
+.pen>label:hover{                           /*Pen Radio Label on Hover*/
     animation: neonHover 500ms ease forwards;
     cursor: pointer;
 }
-@keyframes neonHover {
+@keyframes neonHover {                      /*Pen Radio Label Hover Animation*/
     100%{
-        text-shadow:0 0 0.125em hsl(225 37% 79%), 
+        text-shadow:0 0 0.125em var(--clr-text), 
                     0 0 0.5em var(--clr-lights);
         box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
                     0 0 0.5em 0.125em var(--clr-lights);
     }
 }
-
-input:checked+.checkbox{
+input:checked+.checkbox{                    /*Pen Radio 'Bulb' glow when Selected(Checked)*/
     box-shadow:-0.125em 0.125em 1em 0.125em var(--clr-lights),
                 inset 0 0.125em 0.5em 0.75em var(--clr-lights);
 }
+/*Mode Selection Panel CSS Settings */
 
-
-
-input[type="checkbox"]{
+/*Guide Lines Button CSS Settings */
+input[type="checkbox"]{                     /*Hiding the default Checkbox*/
     display: none;
 }
-label[for="gridLines"]{
+label[for="gridLines"]{                     /*Grid Lines Label Settings*/
     outline:0.125em solid var(--clr-lights) ;
     background-color: var(--clr-fieldbg);
     cursor: pointer;
     text-align: center;
     margin: 0.5em;
 }
-input[type="checkbox"]:checked+label[for="gridLines"]{
-    text-shadow:0 0 0.125em hsl(225 37% 79%), 
+input[type="checkbox"]:checked+label[for="gridLines"]{  /*Grid Lines Label glow When Selected(Checked)*/
+    text-shadow:0 0 0.125em var(--clr-text), 
                 0 0 0.5em var(--clr-lights);
     box-shadow: inset 0 0 0.75em 0 var(--clr-lights), 
                 0 0 0.5em 0.125em var(--clr-lights);
 }
-label[for="gridLines"]:hover{
-    animation: neonHover 500ms ease forwards;
+label[for="gridLines"]:hover{                           /*Gird Lines Label glow on Hover*/
+    animation: neonHover 500ms ease forwards;           /*Same as 'Pen Mode' Radio Label Glow*/
 }
-button{
+/*Guide Lines Button CSS Settings */
+
+/*Reset Button CSS Settings */
+button{                                     /*Hiding the default Checkbox*/
     display: none;
 }
-
-label[for="reset"]{
+label[for="reset"]{                         /*Reset Button Label Settings*/
     outline:0.125em solid var(--clr-lights) ;
     background-color: var(--clr-fieldbg);
     width: 90%;
@@ -258,25 +247,45 @@ label[for="reset"]{
     text-align: center;
     margin: 0.5em;
 }
-
-
-label[for="reset"]:active{
+label[for="reset"]:active{                  /*Reset Button Label glow When Selected(Checked)*/
     background-color: red;
-    text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.788), 
+    text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.79), 
                 0 0 0.5em red;
     box-shadow: inset 0 0 0.75em 0 red, 
                 0 0 0.5em 0.25em red;    
 }
-label[for="reset"]:hover{
-    animation: resetHover 500ms ease forwards;
+label[for="reset"]:hover{                   /*Reset Button Label glow on Hover*/
+    animation: resetHover 500ms ease forwards;  
 }
-
-@keyframes resetHover {
+@keyframes resetHover {                     /*Reset Button Label Hover Animation*/
     100%{
         background-color: red;
-        text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.788), 
+        text-shadow:0 0 0.125em hsla(0, 100%, 50%, 0.79), 
         0 0 0.5em red;
         box-shadow: inset 0 0 0.75em 0 red, 
         0 0 0.5em 0.25em red;  
     }
 }
+/*Reset Button CSS Settings */
+
+
+/* Drawing Grid CSS Settings */
+.grid{                                      /*The Element used to allocate screen space*/
+    display: inherit;
+    width: 80%;
+    height: 94vh;
+    padding:1%;
+    flex-grow: 1;
+}
+.board{                                     /*The Main Box holding all the boxes*/
+    display: grid;
+    width: 100%;
+    border: 0.125em solid var(--clr-lights);
+    box-shadow: 0 0 0.25em 0.25em var(--clr-lights);
+}
+.outline{                                   /*Responsible for adding the Guide Lines*/
+    outline-width: 1px;
+    outline-style: dotted;
+    outline-color: black;
+}
+/* Drawing Grid CSS Settings */
