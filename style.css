@@ -6,7 +6,7 @@
     --clr-fieldbg:#0d0949;  /*Theme Background color for Fields|buttons*/
     --animation-time:1s;      /*Animation time variable to randomize the flicker rate of title using JS*/
     box-sizing: border-box;   
-    font-size: 1.5em;         
+    font-size: 1em;         
 }
 body{
     background-color: var(--clr--bg);
